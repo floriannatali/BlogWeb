@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title%}Blog{% endblock %}</title>
+    <meta name="description" content="A admin dashboard theme that will get you started with Bootstrap 4." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Codeply">
+
+
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    {% stylesheets filter='cssrewrite'
+    '@AppBundle/Resources/public/css/styles.css'%}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets%}
+</head>
+<body >
+<nav class="navbar navbar-fixed-top navbar-dark bg-primary">
+    <button class="navbar-toggler hidden-sm-up pull-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+        ☰
+    </button>
+    <a class="navbar-brand" href="#">Navbar</a>
+    <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
+        <ul class="nav navbar-nav pull-right">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('index_accueil') }}">Home <span class="sr-only">Home</span></a>
+            </li>
+            <li class="nav-item">
+                {% if app.user %}
+                    <a class="nav-link" href="#features">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="{{ path('auth_login') }}">Login</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid" id="main">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="main">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<!--/.container-->
+<footer class="container-fluid">
+    <p class="text-right small">©2015 Company</p>
+</footer>
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+{% javascripts '@AppBundle/Resources/public/js/scripts.js' %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+</body>
 </html>
