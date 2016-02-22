@@ -1,5 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} - OK{% endblock %}
+{% block title %}{{ parent() }} - Accueil{% endblock %}
 
-{% block body %}OK{% endblock %}
+{% block body %}
+    <h2>Liste des derniers articles</h2>
+    <div class="card-columns">
+        {% for article in articles %}
+            <div class="card card-block">
+                {% if app.user %}
+                    <h4 class="card-title"><a href="#todo">{{ article.title }}</a></h4>
+                {% else %}
+                    <h4 class="card-title">{{ article.title }}</h4>
+                {% endif %}
+                <p class="card-text">
+                    {{ article.content[:200] }}... {% if app.user %}<a href="#todo">read</a>{% endif %}
+                </p>
+                <p class="card-text"><small class="text-muted">Published the {{ article.datePublished|date('Y-m-d') }} by <b>{{ article.author }}</b></small></p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
