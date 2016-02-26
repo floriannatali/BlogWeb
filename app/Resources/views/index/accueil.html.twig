@@ -15,7 +15,7 @@
                 <p class="card-text">
                     {{ article.content[:200] }}... {% if app.user %}<a href="#todo">read</a>{% endif %}
                 </p>
-                <p class="card-text"><small class="text-muted">Published the {{ article.datePublished|date('Y-m-d') }} by <b>{{ article.author }}</b></small></p>
+                <p class="card-text"><small class="text-muted">Published the {{ article.date_published }} by <b>{{ article.author }}</b></small></p>
             </div>
         {% endfor %}
     </div>
