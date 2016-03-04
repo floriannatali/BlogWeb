@@ -18,6 +18,21 @@
     {% endstylesheets%}
 </head>
 <body >
+{% if app.session.flashBag.has('success') %}
+    <div class="card-deck-wrapper">
+        <div class="card-deck">
+            {% for msg in app.session.flashBag.get('success') %}
+                <div class="card card-inverse card-success text-center">
+                    <div class="card-block">
+                        <blockquote class="card-blockquote">
+                            <p>{{ msg }}</p>
+                        </blockquote>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
 <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
     <button class="navbar-toggler hidden-sm-up pull-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
         ☰
@@ -28,9 +43,19 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('index_accueil') }}">Home <span class="sr-only">Home</span></a>
             </li>
+            {% if is_granted('ROLE_READER') %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('index_all_articles') }}">All Articles<span class="sr-only">All Articles</span></a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_WRITER') %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('index_add_article') }}">New Article <span class="sr-only">New Article</span></a>
+            </li>
+            {% endif %}
             <li class="nav-item">
                 {% if app.user %}
-                    <a class="nav-link" href="#features">Logout</a>
+                    <a class="nav-link" href="{{ path('auth_logout') }}">Logout</a>
                 {% else %}
                     <a class="nav-link" href="{{ path('auth_login') }}">Login</a>
                 {% endif %}

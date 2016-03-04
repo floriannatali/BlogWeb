@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} - Login{% endblock %}
+{% block title %}{{ parent() }} - New Article{% endblock %}
 
 {% block body %}
     <div class="row">
@@ -9,19 +9,17 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    Authentication
+                    New Article
                 </div>
                 <div class="card-block">
-                    <h4 class="card-title">Login form</h4>
                     {{ form_start(form) }}
-                    {{ form_row(form.login) }}
-                    {{ form_row(form.password) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.content) }}
                     {{ form_row(form.submit) }}
                     {{ form_errors(form) }}
                     {{ form_end(form) }}
                 </div>
             </div>
-
         </div>
     </div>
 {% endblock %}

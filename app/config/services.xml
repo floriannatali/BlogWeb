@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="app_bundle.jwt_parser" class="Lcobucci\JWT\Parser">
+        </service>
+
+        <service id="app_bundle.guzzle.auth_api_client" class="Guzzle\Http\Client">
+            <argument type="string">%api_auth_base_url%</argument>
+        </service>
+        <service id="app_bundle.guzzle.article_api_client" class="Guzzle\Http\Client">
+            <argument type="string">%api_article_base_url%</argument>
+        </service>
+
+            <service id="app_bundle.user_provider"
+                     class="AppBundle\Security\UserProvider"
+                    >
+                <argument type="service" id="app_bundle.jwt_parser"/>
+            </service>
+    </services>
+
+</container>
