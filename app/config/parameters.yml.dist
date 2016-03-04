@@ -17,5 +17,5 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
-    api_article_base_url:      http://localhost/BlogData/app.php/api/
-    api_auth_base_url:         http://localhost/BlogAuth/app.php/api/
+    api_article_base_url:      http://localhost/BlogData/api/
+    api_auth_base_url:         http://localhost/BlogAuth/api/
